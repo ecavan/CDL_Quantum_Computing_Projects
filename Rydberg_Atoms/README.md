@@ -1,4 +1,4 @@
-![CDL 2021 Cohort Project](../Week2_Rydberg_Atoms/img/batman-slap.jpg)
+![CDL 2021 Cohort Project](../Rydberg_Atoms/img/batman-slap.jpg)
 
 ## Project 2: Optimization problems \& Rydberg atom arrays
 Optimization is a crucial element used in solving problems across many different fields, 
@@ -35,7 +35,7 @@ with an edge if and only if the corresponding circles intersect.
 The problem of finding the MIS can be expressed as a quadratic unconstrained optimization problem,
 which is also equivalent to an Ising hamiltonian
 
-![ising hamiltonian](../Week2_Rydberg_Atoms/img/ising_hamiltonian.png)
+![ising hamiltonian](../Rydberg_Atoms/img/ising_hamiltonian.png)
 
 where the quadratic terms favours disjoint circles and the linear term makes sure
 that we select as many circles as possible.
@@ -52,13 +52,13 @@ space of a generic optimization problem by simulating the physical process of he
 and then slowly lowering the temperature to decrease defects, thus minimizing the system energy.
 Each transition in spanning the solution space is called anneal.
 
-We compare two different classical algorithms implemented on Python, see [this notebook](../Week2_Rydberg_Atoms/Task1_python.ipynb) 
+We compare two different classical algorithms implemented on Python, see [this notebook](../Rydberg_Atoms/Task1_python.ipynb) 
 in which we simulate the transitions of the solution toward to ground state of the Hamiltonian.
 In particular, we implemented the Metropolis-Hastings and Wolff algorithms. 
 
 The following plot shows the solutions obtained for different number of iteration.
 
-![t11](../Week2_Rydberg_Atoms/img/t11.png)
+![t11](../Rydberg_Atoms/img/t11.png)
 
 Clearly, this plot shows the convergence of the solutions for a larger number of iterations. It also shows how the algorithm traces out the solution space; i.e reaches different discrete energy levels before arriving at the ground state.
 
@@ -66,13 +66,13 @@ We also investigated the convergence of the solutions when we start from a highe
 As expected, the convergence is slower due to the presence of larger thermal fluctuations. 
 Thus, it takes more iterations to reach the actual ground state of the system. The difference between the two temperatures is shown in this plot (low temperature in 1 magnitude of order smaller than the high temperature):
 
-![t12](../Week2_Rydberg_Atoms/img/b1.png)
+![t12](../Rydberg_Atoms/img/b1.png)
 
 In the following plot, we show the histogram of solutions obtained with the Metropolis-Hastings algorithm. 
 We observe that some of the solutions appear with a similar frequency, meaning that we are in presence
 of a degeneracy of the ground state, i.e. mutliple solutions correspond to the same energy level.
 
-![t14](../Week2_Rydberg_Atoms/img/t14.png)
+![t14](../Rydberg_Atoms/img/t14.png)
 
 [comment]: <> (After increasing the value of N by a factor of 10:)
 
@@ -86,7 +86,7 @@ number of iterations as in the Metropolis-Hasting algorithm:
 We observe that the Wolff algorithm underperforms the Metropolis-Hasting algorithm since the
 convergence of the solutions is slower, i.e. it requires a larger number of iterations; there is a similar plot to the one shown above that can be accessed in the notebook. Finally, we tested the algorithm using different annealing schedules (exponential, logarithmic and the power law one we were given) to explore how this would influence the number of iterations needed. These schedules were tested on the Wolff algorithm we implemented. As a side note: just because a given annealing schedule arrived at a solution in less iterations, doesn't necessarily mean it converged to the correct ground state.
 
-![t16](../Week2_Rydberg_Atoms/img/b3.png)
+![t16](../Rydberg_Atoms/img/b3.png)
 
 [comment]: <> (Finally, a picture of the fully connected 6 node graph by using Networkx &#40;a python package&#41;:)
 
@@ -112,7 +112,7 @@ Compared with ground state atoms, they exhibit a very large electric dipole mome
 with macroscopic external fields. Thus, this makes Rydberg atoms easy to control with static electric or magnetic, 
 laser, or microwave fields which is then ideal for implementing controllable quantum many-body simulators.
 
-![rydberg atoms](../Week2_Rydberg_Atoms/img/rydberg.jpg)
+![rydberg atoms](../Rydberg_Atoms/img/rydberg.jpg)
 
 In particular, the Rydberg hamiltonian has the same functional form as the QUBO hamiltonian
 used to solve the UD-MIS problem. Where the linear term is responsible for the interaction of each atom with the external field,
@@ -122,11 +122,11 @@ The concept of quantum annealing can then be applied to such a system to find th
 state of an optimization problem that can be mapped to the hamiltonian of the Rydberg atom system.
 
 The analysis we performed is based on the extension of the provided 
-[Julia code](../Week2_Rydberg_Atoms/legacy_run_quantum_annealing.jl).
+[Julia code](../Rydberg_Atoms/legacy_run_quantum_annealing.jl).
 
 The starting point is the same graph as provided in the previous section:
 
-![CDL 2020 Cohort Project](../Week2_Rydberg_Atoms/Graphics/coordinate_plot.svg)
+![CDL 2020 Cohort Project](../Rydberg_Atoms/Graphics/coordinate_plot.svg)
 
 In this code, the quadratic and linear terms of the interaction hamiltonian are defined time-dependent functions 
 such that at the beginning (t=0) one has a free hamiltonian, while by increasing time steps
@@ -138,7 +138,7 @@ the initial state will remain in the ground state across the whole adiabatic tra
 The ground state of the final interaction represents thus the minimum of the optimization problem
 mapped onto the system.
 
-![CDL 2020 Cohort Project](../Week2_Rydberg_Atoms/Graphics/histogram_solutions.svg)
+![CDL 2020 Cohort Project](../Rydberg_Atoms/Graphics/histogram_solutions.svg)
 
 By simulating a measurement of the final ground state a large amount of time, we obtained a
 distribution of the results which shows that there are basically three degenerate solutions.
@@ -149,18 +149,18 @@ We selected one of the three solutions and we mapped it to a graph. In the space
 the solution found is given by the graph below, where the blue circles correspond to the independent set
 of vertices:
 
-![CDL 2020 Cohort Project](../Week2_Rydberg_Atoms/Graphics/coordinate_plot_solution.svg)
+![CDL 2020 Cohort Project](../Rydberg_Atoms/Graphics/coordinate_plot_solution.svg)
 
 Then, similarly to what done for the classical algorithm, we repeated the analysis of 
 convergence of the solutions for the quantum algorithm. 
 In the following plot, the histogram of the solutions is shown for different number 
 of measurements:
 
-![t21](../Week2_Rydberg_Atoms/img/t21.png)
+![t21](../Rydberg_Atoms/img/t21.png)
 
 Finally, we investigated how the speed of the quantum solution varies with the value of dt:
 
-![t22](../Week2_Rydberg_Atoms/img/t22.png)
+![t22](../Rydberg_Atoms/img/t22.png)
 
 Obviously, a slower transition to the final Hamiltonian, leads to a larger computational time. 
 However, the solutions obtained with a larger value of dt do not significantly differ from those
@@ -188,7 +188,7 @@ we only had access to one thread (computer core). [This link](https://towardsdat
 how the speed of the Julia code compares to a similar implementation in Python when we make use of 
 parallelization (see figure below). 
 
-![julia results](../Week2_Rydberg_Atoms/img/julia.png)
+![julia results](../Rydberg_Atoms/img/julia.png)
 
 ## 2. Ocean SDK: comparing simulation to a real quantum device
 
@@ -206,16 +206,16 @@ This is useful as the D-Wave library provides a wrapper to solve the MIS problem
 The results from all implementation are equivalent. Note that also in this case we 
 observed the problem intrinsic degeneracy, being the vertices 0, 3, and 5 equivalent (see figure below).
 
-![Graph solution DWave](../Week2_Rydberg_Atoms/img/solution_Ocean_sdk.png)
+![Graph solution DWave](../Rydberg_Atoms/img/solution_Ocean_sdk.png)
 
 ## 3. Gotham city and Bruce's stinginess
 
-![Gotham](../Week2_Rydberg_Atoms/img/gotham.jpg)
+![Gotham](../Rydberg_Atoms/img/gotham.jpg)
 
 The City of Gotham is looking at putting in new cell phone towers. 
 The possible locations of the cell phone towers are given in this figure:
 
-![Gotham coordinates](../Week2_Rydberg_Atoms/img/gotham-location.png)
+![Gotham coordinates](../Rydberg_Atoms/img/gotham-location.png)
 
 The billionaire (but stingy) Bruce Wayne is funding the project, but he loves his money. 
 Therefore, Gotham should only purchase the required number of cell phone towers such that:
@@ -234,16 +234,16 @@ can be expressed as a MIS problem on the defined graph, i.e. we maximize the num
 (antennas) that are independent (non-overlapping signals). 
 
 Similarly to the analysis performed in the previous sections, the UD-MIS problem can be solved for the Gotham's antennas graph by means of:
-- simulated (thermal) annealing (see [Python notebook](../Week2_Rydberg_Atoms/Task3_python.ipynb))
-- quantum annealing simulation (see [Julia notebook](../Week2_Rydberg_Atoms/Task_3_QAnnealing.ipynb))
-- D-Wave quantum annealing solution (see [Python notebook](../Week2_Rydberg_Atoms/OceanSDK_implmentation_gotham.ipynb))
+- simulated (thermal) annealing (see [Python notebook](../Rydberg_Atoms/Task3_python.ipynb))
+- quantum annealing simulation (see [Julia notebook](../Rydberg_Atoms/Task_3_QAnnealing.ipynb))
+- D-Wave quantum annealing solution (see [Python notebook](../Rydberg_Atoms/OceanSDK_implmentation_gotham.ipynb))
 
 #### Classically Simulated (thermal) annealing
 
 Using the Metropolis-Hastings algorithm, we obtained the solutions for the 12 node graph of the problem. 
 The histogram for N = 10k and T_i = 10k is shown below:
 
-![t31](../Week2_Rydberg_Atoms/img/t31.png)
+![t31](../Rydberg_Atoms/img/t31.png)
 
 #### Quantum simulated annealing
 Next, we executed the run with the quantum annealing simulator (10000 measurements) 
@@ -259,7 +259,7 @@ Thus, the most frequent bitstrings in the histogram correspond to the optimal so
 There is clearly a degeneracy of solutions which appear equally frequent in the histogram above.
 Such solutions are shown in the figures below (the solution superimposed on a map of Gotham, NY):
 
-![Solution Gotham](../Week2_Rydberg_Atoms/img/t3_plot.png)
+![Solution Gotham](../Rydberg_Atoms/img/t3_plot.png)
 
 By calculating the energy of these two solutions we can see that they are effectively degenerate,
 with a hamiltonian eigenvalue of -5.
@@ -279,7 +279,7 @@ see [10]). See next sections for more details on the coverage problem.
 
 Q.2 Solve Gotham City’s problem.Using the methods provided in Tasks 1 and 2. Are there multiple solutions?
 
-The solutions correspond to the graphs shown above; the associated notebooks [python](../Week2_Rydberg_Atoms/Task3_python.ipynb) and [Julia](../Week2_Rydberg_Atoms/Task_3_QAnnealing.ipynb) have more details. 
+The solutions correspond to the graphs shown above; the associated notebooks [python](../Week2_Rydberg_Atoms/Task3_python.ipynb) and [Julia](../Rydberg_Atoms/Task_3_QAnnealing.ipynb) have more details. 
 
 Q.3 Should Bruce pay for a few more cell phone towers to make sure that more ofGotham City has cell phone service?
 
@@ -289,17 +289,17 @@ There are multiple ways to solve this problem.
 
 Here we have plotted a fully connected graph of 12 nodes.
 
-![t32](../Week2_Rydberg_Atoms/img/t32.png)
+![t32](../Rydberg_Atoms/img/t32.png)
 
 Then, we remove nodes, to arrive at (one of the solutions- due to the degeneracy) the solution given by the 
 MCMC algorithm. 
 
-![t33](../Week2_Rydberg_Atoms/img/t33.png)
+![t33](../Rydberg_Atoms/img/t33.png)
 
 We calculate the density of the above graphs and then we calculate the density of a new graph, 
 formed by randomly adding another node/vertex to the graph of the solution.
 
-![t34](../Week2_Rydberg_Atoms/img/t34.png)
+![t34](../Rydberg_Atoms/img/t34.png)
 
 What we find is this: the solution graph has a density that is 27% more than that of the original 12 node graph. 
 By adding another node, the density of the new graph is 18.5% more dense than the original 12 cell phone tower graph. 
@@ -310,14 +310,14 @@ than he should not buy any more cell towers.
 #### Appraoch 2: Extra Tower (12+1)
 
 We additionally tested whether or not Bruce should buy extra towers, besides the locations imposed by the problem 
-(see [pdf](../Week2_Rydberg_Atoms/Task3_extra_credit.pdf), [Julia](../Week2_Rydberg_Atoms/Task2-3-ext_Saesun.ipynb) 
+(see [pdf](../Rydberg_Atoms/Task3_extra_credit.pdf), [Julia](../Week2_Rydberg_Atoms/Task2-3-ext_Saesun.ipynb) 
 and visualzation done in [Mathematica](../Week2_Rydberg_Atoms/Graphics.nb)).
 
 We solved the MIS problem for a graph with 13 vertices (12 blue corresponding to the existing locations + 1 red extra location). 
 The red location was chosen by adding a vertex around an existing one in four different configurations,
 as shown in the figure below. Thus, we analyzed in total 48 different graphs.
 
-![t35](../Week2_Rydberg_Atoms/img/extra_problem.png)
+![t35](../Rydberg_Atoms/img/extra_problem.png)
 
 Among all 192 possible solutions, we found 55 optimal locations which correspond to new (red) locations. 
 Thus, this shows that one can obtain an increase of coverage of about **29%** by including new locations.
