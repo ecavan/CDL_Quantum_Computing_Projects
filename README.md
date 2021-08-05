@@ -21,3 +21,5 @@ Click on a repository to view the project. There is a technical README, as well 
 ## Technology
 
 Languages used: Julia, Python
+
+Topics: NP-Hard optimization problems, Quantum Chemistry, Natural Language Processing, Random Number Generation
